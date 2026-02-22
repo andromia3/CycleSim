@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+*.xlsx
+!data/sample_capital_model.csv
+tests/screenshots/
+.env
+STATE.md
+tests/playwright_*
+tests/audit.py

@@ -1,0 +1,581 @@
+/* ============================================================
+   CycleSim — Design System v3
+   Bloomberg terminal density, Stripe polish, modern micro-interactions.
+   ============================================================ */
+
+/* --- Fonts ------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --cs-bg:        #f5f6f8;
+  --cs-surface:   #ffffff;
+  --cs-sidebar:   #0c1322;
+  --cs-sidebar-2: #151f35;
+  --cs-border:    #e4e7ec;
+  --cs-text:      #111827;
+  --cs-muted:     #6b7280;
+  --cs-accent-a:  #2563eb;
+  --cs-accent-b:  #dc5c0c;
+  --cs-green:     #059669;
+  --cs-red:       #dc2626;
+  --cs-font:      'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --cs-mono:      'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --cs-radius:    6px;
+  --cs-shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --cs-shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cs-shadow-lg: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --cs-glow-blue: 0 0 20px rgba(37,99,235,0.15);
+}
+
+/* --- Root -------------------------------------------------- */
+html { font-size: 14px; scroll-behavior: smooth; }
+body {
+  font-family: var(--cs-font) !important;
+  background: var(--cs-bg) !important;
+  color: var(--cs-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.006em;
+}
+
+/* --- Sidebar: dark, tight, editorial ----------------------- */
+.mantine-AppShell-navbar {
+  background: linear-gradient(180deg, var(--cs-sidebar) 0%, #0a0f1a 100%) !important;
+  border-right: 1px solid rgba(255,255,255,0.04) !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+.mantine-AppShell-navbar::-webkit-scrollbar { width: 4px; }
+.mantine-AppShell-navbar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+}
+.mantine-AppShell-navbar::-webkit-scrollbar-track { background: transparent; }
+
+/* Sidebar text */
+.mantine-AppShell-navbar .mantine-Text-root {
+  color: rgba(255,255,255,0.78) !important;
+}
+.mantine-AppShell-navbar .mantine-Text-root[data-c="dimmed"] {
+  color: rgba(255,255,255,0.38) !important;
+}
+
+/* Sidebar accordion — tight */
+.mantine-AppShell-navbar .mantine-AccordionControl-label { padding: 5px 0 !important; }
+.mantine-AppShell-navbar .mantine-AccordionControl-root {
+  padding: 3px 0 !important;
+  transition: background 0.15s ease;
+}
+.mantine-AppShell-navbar .mantine-AccordionControl-root:hover {
+  background: rgba(255,255,255,0.03) !important;
+}
+.mantine-AppShell-navbar .mantine-AccordionControl-chevron {
+  color: rgba(255,255,255,0.3) !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mantine-AppShell-navbar .mantine-AccordionPanel-content { padding: 4px 0 !important; }
+.mantine-AppShell-navbar .mantine-Accordion-item { border-color: rgba(255,255,255,0.06) !important; }
+
+/* Sidebar sliders */
+.mantine-AppShell-navbar .mantine-Slider-track {
+  background: rgba(255,255,255,0.10) !important;
+  transition: background 0.15s ease;
+}
+.mantine-AppShell-navbar .mantine-Slider-track:hover {
+  background: rgba(255,255,255,0.15) !important;
+}
+.mantine-AppShell-navbar .mantine-Slider-bar { background: var(--cs-accent-a) !important; }
+.mantine-AppShell-navbar .mantine-Slider-thumb {
+  border-color: var(--cs-accent-a) !important;
+  background: white !important;
+  width: 12px !important;
+  height: 12px !important;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+.mantine-AppShell-navbar .mantine-Slider-thumb:hover {
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
+  transform: scale(1.15);
+}
+.mantine-AppShell-navbar .mantine-Slider-markLabel {
+  color: rgba(255,255,255,0.28) !important;
+  font-size: 9px !important;
+}
+
+/* Sidebar inputs */
+.mantine-AppShell-navbar .mantine-Input-input,
+.mantine-AppShell-navbar .mantine-NumberInput-input,
+.mantine-AppShell-navbar .mantine-TextInput-input,
+.mantine-AppShell-navbar .mantine-Select-input {
+  background: var(--cs-sidebar-2) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.82) !important;
+  font-size: 13px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.mantine-AppShell-navbar .mantine-Input-input:focus,
+.mantine-AppShell-navbar .mantine-TextInput-input:focus {
+  border-color: var(--cs-accent-a) !important;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.15) !important;
+}
+.mantine-AppShell-navbar .mantine-Input-label,
+.mantine-AppShell-navbar .mantine-InputWrapper-label {
+  color: rgba(255,255,255,0.50) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.02em;
+}
+
+/* Sidebar segmented control */
+.mantine-AppShell-navbar .mantine-SegmentedControl-root { background: var(--cs-sidebar-2) !important; }
+.mantine-AppShell-navbar .mantine-SegmentedControl-label {
+  color: rgba(255,255,255,0.5) !important;
+  transition: color 0.15s ease;
+}
+.mantine-AppShell-navbar .mantine-SegmentedControl-indicator {
+  background: var(--cs-accent-a) !important;
+  box-shadow: 0 1px 3px rgba(37,99,235,0.3);
+}
+.mantine-AppShell-navbar .mantine-SegmentedControl-label[data-active] { color: white !important; }
+
+/* Sidebar run button — glowing CTA */
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="filled"] {
+  background: linear-gradient(135deg, var(--cs-accent-a) 0%, #3b82f6 100%) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(37,99,235,0.3), 0 0 12px rgba(37,99,235,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="filled"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="filled"]:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.4), 0 0 20px rgba(37,99,235,0.15);
+  transform: translateY(-1px);
+}
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="filled"]:hover::before { opacity: 1; }
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="filled"]:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(37,99,235,0.3);
+}
+
+/* Sidebar dividers */
+.mantine-AppShell-navbar .mantine-Divider-root { border-color: rgba(255,255,255,0.06) !important; }
+.mantine-AppShell-navbar .mantine-Divider-label { color: rgba(255,255,255,0.28) !important; font-size: 10px !important; }
+
+/* Sidebar tooltips */
+.mantine-AppShell-navbar .mantine-Tooltip-tooltip {
+  background: #1e293b !important;
+  color: rgba(255,255,255,0.88) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  font-size: 12px !important;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+}
+
+/* Sidebar buttons + upload */
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="light"] {
+  background: rgba(255,255,255,0.05) !important;
+  color: rgba(255,255,255,0.65) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  transition: all 0.15s ease;
+}
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="light"]:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+.mantine-AppShell-navbar .mantine-Button-root[data-variant="subtle"] {
+  color: rgba(255,255,255,0.45) !important;
+}
+.mantine-AppShell-navbar .mantine-Paper-root {
+  background: var(--cs-sidebar-2) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+/* Sidebar badge */
+.mantine-AppShell-navbar .mantine-Badge-root {
+  font-size: 10px !important;
+}
+
+/* Sidebar chart (capital model preview) */
+.mantine-AppShell-navbar .js-plotly-plot .main-svg { background: transparent !important; }
+
+/* --- Main area --------------------------------------------- */
+.mantine-AppShell-main {
+  background: var(--cs-bg) !important;
+}
+
+/* --- Cards / Paper ----------------------------------------- */
+.mantine-AppShell-main .mantine-Paper-root {
+  border: 1px solid var(--cs-border) !important;
+  box-shadow: var(--cs-shadow-sm) !important;
+  border-radius: var(--cs-radius) !important;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mantine-AppShell-main .mantine-Paper-root:hover {
+  box-shadow: var(--cs-shadow-lg) !important;
+}
+
+/* Accent-bordered cards (exec summary, strategy, stress) */
+.mantine-AppShell-main .mantine-Paper-root[style*="border-left: 3px"] {
+  border-left-width: 3px !important;
+  border-left-style: solid !important;
+}
+
+/* --- Tables ------------------------------------------------ */
+.mantine-Table-root {
+  font-size: 12.5px !important;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.mantine-Table-td, .mantine-Table-th {
+  padding: 6px 10px !important;
+  border-color: #f0f1f3 !important;
+  transition: background 0.1s ease;
+}
+.mantine-Table-th {
+  font-weight: 600 !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #9ca3af !important;
+  background: #fafbfc !important;
+  border-bottom: 2px solid #e5e7eb !important;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.mantine-Table-tr[data-striped="odd"] td {
+  background: #fafbfc !important;
+}
+.mantine-Table-tr:hover td {
+  background: #eef2ff !important;
+}
+
+/* --- Tabs -------------------------------------------------- */
+.mantine-Tabs-tab {
+  font-weight: 500 !important;
+  font-size: 12.5px !important;
+  letter-spacing: 0.005em;
+  padding: 9px 16px !important;
+  color: #9ca3af !important;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.mantine-Tabs-tab:hover {
+  color: var(--cs-text) !important;
+  background: rgba(37,99,235,0.04) !important;
+}
+.mantine-Tabs-tab[data-active] {
+  color: var(--cs-accent-a) !important;
+  font-weight: 600 !important;
+  border-bottom-color: var(--cs-accent-a) !important;
+  background: transparent !important;
+}
+.mantine-Tabs-tabsList {
+  border-bottom: 1px solid var(--cs-border) !important;
+  gap: 0 !important;
+}
+.mantine-Tabs-panel {
+  padding-top: 14px !important;
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* --- Badges ------------------------------------------------ */
+.mantine-Badge-root {
+  text-transform: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.005em;
+  font-size: 11px !important;
+  transition: transform 0.15s ease;
+}
+
+/* --- Charts ------------------------------------------------ */
+.dash-graph {
+  min-height: 350px;
+}
+.dash-graph .plot-container,
+.dash-graph .svg-container {
+  min-height: inherit !important;
+}
+.js-plotly-plot {
+  margin-bottom: -4px;
+}
+.js-plotly-plot .modebar {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.js-plotly-plot:hover .modebar {
+  opacity: 0.6;
+}
+.js-plotly-plot .plot-container { border: none !important; }
+
+/* --- Loading ----------------------------------------------- */
+._dash-loading { position: relative; }
+.dash-spinner { color: var(--cs-accent-a) !important; }
+
+/* Loading overlay fade */
+._dash-loading-callback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245,246,248,0.7);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  animation: fadeIn 0.15s ease-out;
+}
+
+/* --- Animations -------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Smooth card entrance */
+.mantine-AppShell-main .mantine-Paper-root {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* KPI number animation hint */
+.mantine-AppShell-main .mantine-Text-root[data-fw="700"][data-size="xl"] {
+  transition: color 0.3s ease;
+}
+
+/* --- Alert ------------------------------------------------- */
+.mantine-Alert-root {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* --- Code blocks ------------------------------------------- */
+.mantine-Code-root {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0;
+  font-family: var(--cs-mono) !important;
+  font-size: 12px !important;
+}
+
+/* --- Scrollbar (main area) --------------------------------- */
+.mantine-AppShell-main::-webkit-scrollbar { width: 6px; }
+.mantine-AppShell-main::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+.mantine-AppShell-main::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+.mantine-AppShell-main::-webkit-scrollbar-track { background: transparent; }
+
+/* --- Selection --------------------------------------------- */
+::selection {
+  background: rgba(37,99,235,0.15);
+  color: inherit;
+}
+
+/* --- Focus rings ------------------------------------------- */
+*:focus-visible {
+  outline: 2px solid var(--cs-accent-a);
+  outline-offset: 2px;
+}
+
+/* --- Print ------------------------------------------------- */
+@media print {
+  .mantine-AppShell-navbar { display: none !important; }
+  .mantine-AppShell-main {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  .mantine-Tabs-tabsList { break-after: avoid; }
+  .mantine-Paper-root { box-shadow: none !important; break-inside: avoid; }
+  .mantine-Tabs-panel { break-inside: avoid; }
+  .dash-graph { break-inside: avoid; }
+  .mantine-Badge-root { break-inside: avoid; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* --- Responsive -------------------------------------------- */
+@media (max-width: 1200px) {
+  .mantine-AppShell-navbar {
+    width: 320px !important;
+  }
+}
+@media (max-width: 768px) {
+  .mantine-Tabs-tab {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+  }
+  .mantine-Tabs-tabsList {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}
+@media (max-width: 480px) {
+  .dash-graph { min-height: 250px; }
+  .mantine-Table-root { font-size: 11px !important; }
+  .mantine-Table-td, .mantine-Table-th { padding: 4px 6px !important; }
+}
+
+/* --- Reduced motion --------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Methodology tab --------------------------------------- */
+
+/* Architecture flowchart */
+.methodology-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 8px;
+}
+
+.methodology-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  max-width: 170px;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1.5px solid #dde1e8;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: all 0.2s ease;
+  cursor: default;
+  text-align: center;
+}
+
+.methodology-node:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.15);
+  transform: translateY(-2px);
+}
+
+.methodology-node .node-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #1e293b;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.methodology-node .node-sub {
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+.methodology-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  color: #94a3b8;
+  font-size: 20px;
+  font-weight: 300;
+  user-select: none;
+}
+
+.methodology-row-break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.methodology-return-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 4px 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Documentation sections */
+.methodology-section {
+  border-left: 3px solid #3b82f6;
+  padding-left: 16px;
+}
+
+.methodology-section.accent-green  { border-left-color: #059669; }
+.methodology-section.accent-amber  { border-left-color: #d97706; }
+.methodology-section.accent-purple { border-left-color: #7c3aed; }
+.methodology-section.accent-red    { border-left-color: #dc2626; }
+.methodology-section.accent-teal   { border-left-color: #0891b2; }
+
+/* Formula blocks */
+.formula-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* Glossary items */
+.glossary-term {
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 180px;
+}
+
+.glossary-def {
+  color: #475569;
+}
+
+/* Print media — for methodology PDF export */
+@media print {
+  /* Hide sidebar, nav, buttons */
+  .mantine-AppShell-navbar,
+  #run-btn,
+  #print-methodology-btn,
+  .mantine-Tabs-list {
+    display: none !important;
+  }
+  /* Full width content */
+  .mantine-AppShell-main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  /* Avoid page breaks inside sections */
+  .methodology-section {
+    break-inside: avoid;
+  }
+  /* Compact spacing */
+  .mantine-Paper-root {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    margin-bottom: 12px;
+  }
+  .methodology-node {
+    border: 1px solid #999;
+    box-shadow: none;
+  }
+}
